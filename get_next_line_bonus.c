@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-s <dlopez-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:23:09 by dlopez-s          #+#    #+#             */
-/*   Updated: 2022/11/07 17:33:55 by dlopez-s         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:48:06 by dlopez-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_stash(char *stash)
 {
@@ -92,22 +92,19 @@ char	*ft_readandstash(int fd, char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[OPEN_MAX];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
-		free (stash);
-		stash = NULL;
+		free (stash[fd]);
+		stash[fd] = NULL;
 		return (NULL);
 	}
-	stash = ft_readandstash(fd, stash);
-	//printf("STASH:\n%s;\n", stash);
-	if (!stash)
+	stash[fd] = ft_readandstash(fd, stash[fd]);
+	if (!stash[fd])
 		return (NULL);
-	line = ft_line(stash);
-	//printf("Line: %s\n", line);
-	stash = ft_stash(stash);
-	//printf("STASH2: %s; \n", stash);
+	line = ft_line(stash[fd]);
+	stash[fd] = ft_stash(stash[fd]);
 	return (line);
 }
