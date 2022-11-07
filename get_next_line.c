@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-s <dlopez-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lopezz <lopezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:23:09 by dlopez-s          #+#    #+#             */
-/*   Updated: 2022/11/05 00:31:57 by dlopez-s         ###   ########.fr       */
+/*   Updated: 2022/11/06 19:23:54 by lopezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_stash(char *stash)
 	char	*str;
 
 	i = 0;
-	while (stash[i] && stash[i] != '\n')
+	while (stash[i] != '\0' && stash[i] != '\n')
 		i++;
 	if (stash[i] == '\0')
 	{
@@ -40,13 +40,13 @@ char	*ft_stash(char *stash)
 
 char	*ft_line(char *stash)
 {
-	static char	*str;
-	int			i;
+	char	*str; //estaba puesta como static pero no lo necesita
+	int		i;
 
 	i = 0;
 	if (stash[i] == '\0')
 		return (NULL);
-	while(stash[i] != '\0' && stash[i]!= '\n')
+	while (stash[i] != '\0' && stash[i] != '\n')
 		i++;
 	str = (char *)malloc((i + 2) * sizeof(char));
 	if (!str)
@@ -59,12 +59,12 @@ char	*ft_line(char *stash)
 	}
 	if (stash[i] == '\n')
 	{
-		str[i] = stash[i];
+		str[i] = '\n';
 		i++;
 	}
 	str[i] = '\0';
 	return (str);
- }
+}
 
 char	*ft_readandstash(int fd, char *stash)
 {
@@ -102,9 +102,12 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	stash = ft_readandstash(fd, stash);
+	//printf("STASH:\n%s;\n", stash);
 	if (!stash)
 		return (NULL);
 	line = ft_line(stash);
-	stash = ft_stash(stash);	
+	//printf("Line: %s\n", line);
+	stash = ft_stash(stash);
+	//printf("STASH2: %s; \n", stash);
 	return (line);
 }
