@@ -6,7 +6,7 @@
 /*   By: lopezz <lopezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:23:55 by dlopez-s          #+#    #+#             */
-/*   Updated: 2022/11/05 17:20:45 by lopezz           ###   ########.fr       */
+/*   Updated: 2022/11/09 17:36:02 by lopezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 char	*get_next_line(int fd);
 char	*ft_readandstash(int fd, char *stash);

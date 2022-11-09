@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-s <dlopez-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lopezz <lopezz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:23:09 by dlopez-s          #+#    #+#             */
-/*   Updated: 2022/11/07 17:33:55 by dlopez-s         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:36:31 by lopezz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,9 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	stash = ft_readandstash(fd, stash);
-	//printf("STASH:\n%s;\n", stash);
 	if (!stash)
 		return (NULL);
 	line = ft_line(stash);
-	//printf("Line: %s\n", line);
 	stash = ft_stash(stash);
-	//printf("STASH2: %s; \n", stash);
 	return (line);
 }
