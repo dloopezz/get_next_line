@@ -6,13 +6,13 @@
 /*   By: dlopez-s <dlopez-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:23:09 by dlopez-s          #+#    #+#             */
-/*   Updated: 2022/11/07 16:48:06 by dlopez-s         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:14:28 by dlopez-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*ft_stash(char *stash)
+static char	*ft_stash(char *stash)
 {
 	int		i;
 	int		j;
@@ -38,7 +38,7 @@ char	*ft_stash(char *stash)
 	return (str);
 }
 
-char	*ft_line(char *stash)
+static char	*ft_line(char *stash)
 {
 	char	*str;
 	int		i;
@@ -66,7 +66,7 @@ char	*ft_line(char *stash)
 	return (str);
 }
 
-char	*ft_readandstash(int fd, char *stash)
+static char	*ft_readandstash(int fd, char *stash)
 {
 	char	*buf;
 	int		readed;
