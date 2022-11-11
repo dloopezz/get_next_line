@@ -6,7 +6,7 @@
 /*   By: dlopez-s <dlopez-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:23:09 by dlopez-s          #+#    #+#             */
-/*   Updated: 2022/11/10 15:14:28 by dlopez-s         ###   ########.fr       */
+/*   Updated: 2022/11/11 13:10:17 by dlopez-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ char	*get_next_line(int fd)
 	static char	*stash[OPEN_MAX];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0)
+		return (NULL);
+	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		free (stash[fd]);
 		stash[fd] = NULL;
@@ -108,3 +110,9 @@ char	*get_next_line(int fd)
 	stash[fd] = ft_stash(stash[fd]);
 	return (line);
 }
+
+/* int main()
+{
+	get_next_line(-4);
+	return (0);
+} */
